@@ -11,9 +11,12 @@ bot = commands.Bot(command_prefix='')
 global guild
 global channel
 
-MainGuildID = 793208749133135873
-MainChannelID = 965930019438358529
-BullyUser = 269125504185925633
+MainGuildID = 895132965632372747
+MainChannelID = 895132966529925227
+BullyUser = 208807050325524480
+#MainGuildID = 793208749133135873
+#MainChannelID = 965930019438358529
+#BullyUser = 269125504185925633
 food_list = [   ':green_apple:',
                 ':apple:',
                 ':pear:',
@@ -143,18 +146,18 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     global channel
-    if (message.content == 'more' and message.channel == channel):
-        await channel.send('{}'.format(message.author.mention))
-        await channel.send(random.choice(food_list))
+    if (message.content == 'more'): # and message.channel == channel):
+        await message.channel.send('{}'.format(message.author.mention))
+        await message.channel.send(random.choice(food_list))
 
-    if (message.content == 'feed' and message.channel == channel):
-        await channel.send(f'<@{BullyUser}>')
-        await channel.send(random.choice(food_list))
+    if (message.content == 'feed'): #and message.channel == channel):
+        await message.channel.send(f'<@{BullyUser}>')
+        await message.channel.send(random.choice(food_list))
     
-    if (message.content > 'feed' and message.channel == channel):
+    if (message.content > 'feed'): # and message.channel == channel):
         for id in re.findall(r'\d+',message.content):
-            await channel.send(f'<@{id}>')
-            await channel.send(random.choice(food_list))
+            await message.channel.send(f'<@{id}>')
+            await message.channel.send(random.choice(food_list))
 
 @bot.listen()
 async def on_ready():
